@@ -1,6 +1,6 @@
-BOT_TOKEN: str = "1"
-SPOTIFY_ID: str = "2"
-SPOTIFY_SECRET: str = "3"
+BOT_TOKEN: str = os.environ['BOT_TOKEN']
+SPOTIFY_ID: str = os.environ['SPOTIFY_ID']
+SPOTIFY_SECRET: str = os.environ['SPOTIFY_SECRET']
 
 BOT_PREFIX = "."
 
@@ -14,7 +14,7 @@ COOKIE_PATH = "/config/cookies/cookies.txt"
 
 GLOBAL_DISABLE_AUTOJOIN_VC = False
 
-VC_TIMEOUT = 600 #seconds
+VC_TIMEOUT = 700 #seconds
 VC_TIMOUT_DEFAULT = True  #default template setting for VC timeout true= yes, timeout false= no timeout
 ALLOW_VC_TIMEOUT_EDIT = True  #allow or disallow editing the vc_timeout guild setting
 
