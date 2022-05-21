@@ -32,7 +32,7 @@ CHANNEL_NOT_FOUND_MESSAGE = "Error: Could not find channel"
 DEFAULT_CHANNEL_JOIN_FAILED = "Error: Could not join the default voice channel"
 INVALID_INVITE_MESSAGE = "Error: Invalid invitation link"
 
-ADD_MESSAGE= "To add this bot to your own Server, click [here]" #brackets will be the link text
+ADD_MESSAGE= "To add this bot to your own Server, click [here]"   #brackets will be the link text
 
 INFO_HISTORY_TITLE = "Songs Played:"
 MAX_HISTORY_LENGTH = 10
