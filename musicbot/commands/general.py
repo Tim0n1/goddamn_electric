@@ -106,6 +106,10 @@ class General(commands.Cog):
     async def _fail(self, ctx):
         await ctx.send(file=discord.File('musicbot/commands/fail.mp4'))
 
+    @commands.command(name='all_history')
+    async def _all_history(self, ctx):
+        await ctx.send(file=discord.File('musicbot/commands/history.txt'))
+
 
 def setup(bot):
     bot.add_cog(General(bot))
