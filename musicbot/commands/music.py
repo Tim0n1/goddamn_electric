@@ -4,7 +4,7 @@ import discord
 from config import config
 from discord.ext import commands
 from musicbot import linkutils, utils
-now = datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S')
+now = datetime.datetime.now().strftime('%y-%m-%d %H:%M')
 
 class Music(commands.Cog):
     """ A collection of the commands related to music playback.
@@ -22,8 +22,9 @@ class Music(commands.Cog):
 
         current_guild = utils.get_guild(self.bot, ctx.message)
         audiocontroller = utils.guild_to_audiocontroller[current_guild]
-        with open('history.txt', 'a+') as f:
-            f.write(f'{now} -->{ctx.message.author.id} | {track}\n')
+        with open('musicbot/commands/history.txt', 'a') as f:
+            f.write(f'{now} --> {ctx.message.author} | {track}\n')
+            print('ivan e gey')
 
         if (await utils.is_connected(ctx) == None):
             if await audiocontroller.uconnect(ctx) == False:
