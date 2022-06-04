@@ -69,5 +69,5 @@ def make_graph_monthly():
     plt.tight_layout()
     plt.savefig('monthly_statistic.png',dpi=300)
 
-make_graph_month()
+
 
