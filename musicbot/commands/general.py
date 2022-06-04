@@ -5,6 +5,7 @@ from discord.ext.commands import has_permissions
 from musicbot import utils
 from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
+import usage_stats
 
 
 class General(commands.Cog):
@@ -109,6 +110,11 @@ class General(commands.Cog):
     @commands.command(name='all_history')
     async def _all_history(self, ctx):
         await ctx.send(file=discord.File('musicbot/commands/history.txt'))
+
+    @commands.command(name='stats')
+    async def _stats(self, ctx):
+        usage_stats.make_graph_monthly()
+        await ctx.send(file=discord.File('music/commands/monthly_statistic.png'))
 
 
 def setup(bot):
