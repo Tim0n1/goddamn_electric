@@ -34,14 +34,11 @@ def count_daily_activity(month):
     return daily_dict
 
 
-print(count_daily_activity(get_month_activity(previous_month)).keys())
 def make_graph_monthly():
     y1 = [0 for i in range(1, 32)]
     x1 = [i for i in range(1, 32)]
     for k, v in count_daily_activity(get_month_activity(previous_month)).items():
         y1[int(k)] = v
-    print(y1)
-    print(x1)
     plt.figure(figsize=(10, 10), facecolor='lightgrey')
     plt.subplot(2, 1, 1)
     plt.title('През миналия месец')
