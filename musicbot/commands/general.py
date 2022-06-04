@@ -5,7 +5,7 @@ from discord.ext.commands import has_permissions
 from musicbot import utils
 from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
-import usage_stats
+from musicbot.commands import usage_stats
 
 
 class General(commands.Cog):
