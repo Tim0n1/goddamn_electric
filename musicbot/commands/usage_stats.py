@@ -1,4 +1,4 @@
-history_file = 'history.txt'
+history_file = 'musicbot/commands/history.txt'
 import matplotlib.pyplot as plt
 from datetime import datetime
 from matplotlib.ticker import MaxNLocator

@@ -114,7 +114,7 @@ class General(commands.Cog):
     @commands.command(name='stats')
     async def _stats(self, ctx):
         usage_stats.make_graph_monthly()
-        await ctx.send(file=discord.File('music/commands/monthly_statistic.png'))
+        await ctx.send(file=discord.File('musicbot/commands/monthly_statistic.png'))
 
 
 def setup(bot):
