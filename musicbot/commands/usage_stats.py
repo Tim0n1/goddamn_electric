@@ -16,10 +16,10 @@ def get_month_activity(month):
     l_months = list()
     f = open(history_file, 'r')
     for line in f:
-
         for i in range(0, len(line)):
             if line[i] == '-':
                 if line[i+1:i+3] == month:
+                    print(line[i+1:i+3])
                     l_months.append(line)
                     break
     return l_months
@@ -38,8 +38,8 @@ def make_graph_monthly():
     y1 = [0 for i in range(1, 32)]
     x1 = [i for i in range(1, 32)]
     for k, v in count_daily_activity(get_month_activity(previous_month)).items():
-        y1[int(k)] = v
-    plt.figure(figsize=(10, 10), facecolor='lightgrey')
+        y1[int(k)-1] = v
+    plt.figure(figsize=(12, 10), facecolor='lightgrey')
     plt.subplot(2, 1, 1)
     plt.title('През миналия месец')
     plt.plot(x1, y1, color='black')
@@ -47,14 +47,14 @@ def make_graph_monthly():
     ax.set_facecolor('#BA5E5E')
     plt.ylabel('Общо използвания за деня')
     plt.xlabel('Дата')
-    plt.xticks([i for i in range(1, 32) if i%2 == 0])
+    plt.xticks([i for i in range(1, 32) if i % 2 == 0])
 
     plt.subplot(2, 1, 2)
     plt.title('През настоящия месец')
     y2 = [0 for i in range(1, 32)]
     x2 = [i for i in range(1, 32)]
     for k, v in count_daily_activity(get_month_activity(current_month)).items():
-        y2[int(k)] = v
+        y2[int(k)-1] = v
     plt.plot(x2, y2, color='black')
     ax = plt.gca()
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -64,7 +64,8 @@ def make_graph_monthly():
     plt.xticks([i for i in range(1, 32) if i % 2 == 0])
     plt.ylim(ymin=0)
     plt.tight_layout()
-    plt.savefig('monthly_statistic.png',dpi=300)
+    plt.savefig('monthly_statistic.png', dpi=300)
+
 
 
 
