@@ -27,10 +27,10 @@ def get_month_activity(month):
 def count_daily_activity(month):
     daily_dict = dict()
     for line in month:
-        if line[0:2] not in daily_dict.keys():
-            daily_dict[line[0:2]] = 1
+        if line[7:9] not in daily_dict.keys():
+            daily_dict[line[7:9]] = 1
         else:
-            daily_dict[line[0:2]] += 1
+            daily_dict[line[7:9]] += 1
     return daily_dict
 
 
