@@ -27,10 +27,10 @@ def get_month_activity(month):
 def count_daily_activity(month):
     daily_dict = dict()
     for line in month:
-        if line[7:9] not in daily_dict.keys():
-            daily_dict[line[7:9]] = 1
+        if line[6:8] not in daily_dict.keys():
+            daily_dict[line[6:8]] = 1
         else:
-            daily_dict[line[7:9]] += 1
+            daily_dict[line[6:8]] += 1
     return daily_dict
 
 
@@ -45,6 +45,7 @@ def make_graph_monthly():
     plt.plot(x1, y1, color='black')
     ax = plt.gca()
     ax.set_facecolor('#BA5E5E')
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     plt.ylabel('Общо използвания за деня')
     plt.xlabel('Дата')
     plt.xticks([i for i in range(1, 32) if i % 2 == 0])
