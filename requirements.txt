@@ -5,5 +5,4 @@ aiohttp
 asyncio
 beautifulsoup4
 spotipy
- matplotlib.pyplot
- matplotlib.ticker
+matplotlib
