@@ -2,6 +2,7 @@ import os
 
 import discord
 from discord.ext import commands
+from dcactivity import DCActivity, DCApplication
 
 from config import config
 from musicbot.audiocontroller import AudioController

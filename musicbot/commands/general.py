@@ -6,6 +6,7 @@ from musicbot import utils
 from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 from musicbot.commands import usage_stats
+from dcactivity import DCActivity, DCApplication
 
 
 class General(commands.Cog):
@@ -17,6 +18,7 @@ class General(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.dcactivity = DCActivity(self.bot)
 
     # logic is split to uconnect() for wide usage
     @commands.command(name='connect', description=config.HELP_CONNECT_LONG, help=config.HELP_CONNECT_SHORT, aliases=['c'])
@@ -99,10 +101,6 @@ class General(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(name='author')
-    async def _author(self, ctx):
-        await ctx.send(file=discord.File('musicbot/commands/dps.JPEG'))
-
     @commands.command(name='fail')
     async def _fail(self, ctx):
         await ctx.send(file=discord.File('musicbot/commands/fail.mp4'))
@@ -116,6 +114,10 @@ class General(commands.Cog):
         usage_stats.make_graph_monthly()
         await ctx.send(file=discord.File('monthly_statistic.png'))
 
+    @commands.command(name='activity')
+    async def activity(self, ctx, *, activity):
+        invite = await self.dcactivity.create_invite(ctx.channel, activity)
+        ctx.send(invite)
 
 def setup(bot):
     bot.add_cog(General(bot))

@@ -1,7 +1,7 @@
 import os
-BOT_TOKEN: str = os.environ['BOT_TOKEN']  #environ['BOT_TOKEN']
-SPOTIFY_ID: str = os.environ['SPOTIFY_ID']  #os.environ['SPOTIFY_ID']
-SPOTIFY_SECRET: str = os.environ['SPOTIFY_SECRET']  #os.environ['SPOTIFY_SECRET']
+BOT_TOKEN: str = os.environ['BOT_TOKEN']  # environ['BOT_TOKEN']
+SPOTIFY_ID: str = os.environ['SPOTIFY_ID']  # os.environ['SPOTIFY_ID']
+SPOTIFY_SECRET: str = os.environ['SPOTIFY_SECRET']  # os.environ['SPOTIFY_SECRET']
 
 BOT_PREFIX = "."
 
