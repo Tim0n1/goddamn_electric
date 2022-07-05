@@ -119,9 +119,10 @@ class General(commands.Cog):
         if ctx.author.voice.channel and ctx.author.voice:
             vc_channel = ctx.author.voice.channel
             invite = await self.dcactivity.create_invite(vc_channel, activity)
-            await ctx.send(invite)
+            ctx.send(invite)
         else:
             await ctx.send('You are not connected to a voice channel')
+
 
 def setup(bot):
     bot.add_cog(General(bot))
