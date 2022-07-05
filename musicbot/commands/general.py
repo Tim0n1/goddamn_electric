@@ -118,8 +118,8 @@ class General(commands.Cog):
     async def activity(self, ctx, *, activity):
         if ctx.author.voice.channel and ctx.author.voice:
             vc_channel = ctx.author.voice.channel
-            invite = await self.dcactivity.create_invite(vc_channel, activity)
-            ctx.send(invite)
+            invite = await self.dcactivity.create_invite(906181185154207775, activity)
+            await ctx.send(invite)
         else:
             await ctx.send('You are not connected to a voice channel')
 
