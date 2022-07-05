@@ -116,7 +116,7 @@ class General(commands.Cog):
 
     @commands.command(name='activity')
     async def activity(self, ctx, *, activity):
-        invite = await self.dcactivity.create_invite(ctx.channel, activity)
+        invite = await self.dcactivity.create_invite(2, activity)
         ctx.send(invite)
 
 def setup(bot):
