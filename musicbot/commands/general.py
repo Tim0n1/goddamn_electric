@@ -116,8 +116,12 @@ class General(commands.Cog):
 
     @commands.command(name='activity')
     async def activity(self, ctx, *, activity):
-        invite = await self.dcactivity.create_invite(2, activity)
-        ctx.send(invite)
+        if ctx.author.voice.channel and ctx.author.voice:
+            vc_channel = ctx.author.voice.channel
+            invite = await self.dcactivity.create_invite(vc_channel, activity)
+            await ctx.send(invite)
+        else:
+            await ctx.send('You are not connected to a voice channel')
 
 def setup(bot):
     bot.add_cog(General(bot))
