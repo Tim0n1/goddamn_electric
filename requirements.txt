@@ -7,3 +7,4 @@ beautifulsoup4
 spotipy
 matplotlib
 dcactivity
+mysql-connector-python
