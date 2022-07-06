@@ -17,5 +17,3 @@ class Gambling(commands.Cog):
         await ctx.send(f'{balance}lv were given to {ctx.message.author.mention}')
 
 
-def setup(bot):
-    bot.add_cog(Gambling(bot))
