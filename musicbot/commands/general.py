@@ -7,8 +7,7 @@ from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 from musicbot.commands import usage_stats
 from dcactivity import DCActivity, DCApplication
-from musicbot.commands.gambling_commands import Gambling
-import DB
+#from musicbot.commands.gambling_commands import Gambling
 
 
 class General(commands.Cog):
@@ -131,4 +130,3 @@ class General(commands.Cog):
 
 def setup(bot):
     bot.add_cog(General(bot))
-    bot.add_cog(Gambling(bot))

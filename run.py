@@ -9,7 +9,7 @@ from musicbot.settings import Settings
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 
 initial_extensions = ['musicbot.commands.music',
-                      'musicbot.commands.general', 'musicbot.plugins.button', 'musicbot/commands/gambling_commands.py']
+                      'musicbot.commands.general', 'musicbot.plugins.button', 'musicbot.commands.gambling_commands']
 bot = commands.Bot(command_prefix=config.BOT_PREFIX,
                    pm_help=True, case_insensitive=True)
 
