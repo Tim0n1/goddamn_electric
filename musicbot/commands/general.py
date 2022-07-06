@@ -7,7 +7,7 @@ from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 from musicbot.commands import usage_stats
 from dcactivity import DCActivity, DCApplication
-from gambling_commands import Gambling
+from musicbot.commands.gambling_commands import Gambling
 import DB
 
 
