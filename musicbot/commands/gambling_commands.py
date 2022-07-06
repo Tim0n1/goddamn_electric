@@ -12,7 +12,7 @@ class Gambling(commands.Cog):
     @commands.command(name='balance')
     async def _balance(self, ctx):
         balance = 1000
-        DB.cursor.execute('INSERT INTO user (discord_id, balance) VALUES (%s,%s)', (ctx.message.author.id, balance))
+        DB.cursor.execute('INSERT INTO user_info (discord_id, balance) VALUES (%s,%s)', (ctx.message.author.id, balance))
         DB.db.commit()
         await ctx.send(f'{balance}lv were given to {ctx.message.author.mention}')
 
