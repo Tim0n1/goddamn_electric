@@ -115,13 +115,6 @@ class General(commands.Cog):
         usage_stats.make_graph_monthly()
         await ctx.send(file=discord.File('monthly_statistic.png'))
 
-    @commands.command(name='balance')
-    async def _balance(self, ctx):
-        balance = 1000
-        DB.cursor.execute('INSERT INTO user (discord_id, balance) VALUES (%s,%s,%s)', (ctx.message.author.id, balance))
-        DB.db.commit()
-        await ctx.send(f'{balance}lv were given to {ctx.message.author.mention}')
-
     @commands.command(name='activity')
     async def activity(self, ctx, *, activity):
         if activity == 'poker':
