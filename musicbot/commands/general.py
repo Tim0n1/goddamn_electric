@@ -7,6 +7,7 @@ from musicbot.audiocontroller import AudioController
 from musicbot.utils import guild_to_audiocontroller, guild_to_settings
 from musicbot.commands import usage_stats
 from dcactivity import DCActivity, DCApplication
+import DB
 
 
 class General(commands.Cog):
@@ -114,14 +115,17 @@ class General(commands.Cog):
         usage_stats.make_graph_monthly()
         await ctx.send(file=discord.File('monthly_statistic.png'))
 
+    @commands.command(name='balance')
+    async def _balance(self, ctx):
+        balance = 1000
+        DB.cursor.execute('INSERT INTO user (discord_id, balance) VALUES (%s,%s,%s)', (ctx.message.author.id, balance))
+        DB.db.commit()
+        await ctx.send(f'{balance}lv were given to {ctx.message.author.mention}')
+
     @commands.command(name='activity')
     async def activity(self, ctx, *, activity):
-        if ctx.author.voice.channel and ctx.author.voice:
-            vc_channel = ctx.author.voice.channel
-            invite = await self.dcactivity.create_invite(906181185154207775, DCApplication.poker)
-            await ctx.send(invite)
-        else:
-            await ctx.send('You are not connected to a voice channel')
+        if activity == 'poker':
+            pass
 
 
 def setup(bot):
