@@ -9,7 +9,7 @@ def get_all_users():
 
 def get_all_ids():
     cursor.execute('SELECT discord_id FROM user_info')
-    return cursor.fetchall()
+    return cursor.fetchall()[0]
 
 class BalanceUtilisation:
 
@@ -28,8 +28,5 @@ class BalanceUtilisation:
                                     discord_id = %s ;''', (new_balance, discord_id))
         db.commit()
 
-    @staticmethod
-    def get_all_ids():
-        cursor.execute('SELECT discord_id FROM user_info')
-        return cursor.fetchall()[0]
+
 
