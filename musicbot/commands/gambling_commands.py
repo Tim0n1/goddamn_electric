@@ -23,8 +23,8 @@ class Gambling(commands.Cog):
 
     @commands.command(name='gamble')
     async def _gamble(self, ctx, amount, bet):
-        discord_id = ctx.message.author.id
-        if str(discord_id) in DB.get_all_ids():
+        discord_id = str(ctx.message.author.id)
+        if discord_id in DB.get_all_ids():
             #try:
             new_balance = 0
 

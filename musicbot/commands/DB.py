@@ -14,13 +14,13 @@ def get_all_ids():
 class BalanceUtilisation:
 
     @staticmethod
-    def get_balance(discord_id: int):
+    def get_balance(discord_id: str):
         for i in get_all_users():
             if i[1] == discord_id:
                 return i[2]
 
     @staticmethod
-    def new_balance(discord_id: int, new_balance: int):
+    def new_balance(discord_id: str, new_balance: int):
         cursor.execute('''UPDATE user
                                 SET 
                                     balance = %s
@@ -30,3 +30,4 @@ class BalanceUtilisation:
 
 
 
+print(BalanceUtilisation.get_balance('439875993998589953'))
