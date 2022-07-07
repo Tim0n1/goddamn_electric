@@ -6,5 +6,5 @@ wheel_numbers = [i for i in range(0, 36)]
 def get_wheel_number_path(n):
     return f'musicbot/roulette_images/roulette{n}.jpg'
 
-print('Please type \'.gamble {ammount} {black/red/yellow}\'')
+
 
