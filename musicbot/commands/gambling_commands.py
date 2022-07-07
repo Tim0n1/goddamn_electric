@@ -28,12 +28,13 @@ class Gambling(commands.Cog):
             #try:
             new_balance = 0
 
-            balance = DB.BalanceUtilisation.get_balance(discord_id)
+            balance = int(DB.BalanceUtilisation.get_balance(discord_id))
+            amount = int(amount)
             choice = random.choice(gambling_utils.wheel_numbers)
             await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
             if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
                 new_balance = balance + amount
-                DB.BalanceUtilisation.new_balance(discord_id,new_balance)
+                DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                 await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
             elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
                 new_balance = balance + amount
