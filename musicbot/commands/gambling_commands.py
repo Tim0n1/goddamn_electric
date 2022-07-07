@@ -22,7 +22,7 @@ class Gambling(commands.Cog):
             await ctx.send(f'{balance} leva. were given to {ctx.message.author.mention}. Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}')
 
     @commands.command(name='gamble')
-    async def _gamble(self, ctx, *, ammount, bet):
+    async def _gamble(self, ctx, amount, bet):
         discord_id = ctx.message.author.id
         if discord_id in DB.get_all_ids():
             try:
@@ -32,19 +32,19 @@ class Gambling(commands.Cog):
                 choice = random.choice(gambling_utils.wheel_numbers)
                 await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
                 if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
-                    new_balance = balance + ammount
+                    new_balance = balance + amount
                     DB.BalanceUtilisation.new_balance(discord_id,new_balance)
                     await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
                 elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
-                    new_balance = balance + ammount
+                    new_balance = balance + amount
                     DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                     await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
                 elif bet == 'green' and choice == 0:
-                    new_balance = balance + 14 * ammount
+                    new_balance = balance + 14 * amount
                     DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                     await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
                 else:
-                    new_balance = balance - ammount
+                    new_balance = balance - amount
                     DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                     await ctx.send(f'{ctx.message.author.mention} lost {new_balance}lv')
 
