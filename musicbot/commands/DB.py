@@ -21,7 +21,7 @@ class BalanceUtilisation:
 
     @staticmethod
     def new_balance(discord_id: str, new_balance: int):
-        cursor.execute('''UPDATE user
+        cursor.execute('''UPDATE user_info
                                 SET 
                                     balance = %s
                                 WHERE
@@ -30,4 +30,3 @@ class BalanceUtilisation:
 
 
 
-print(BalanceUtilisation.get_balance('439875993998589953'))
