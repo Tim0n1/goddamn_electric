@@ -19,40 +19,40 @@ class Gambling(commands.Cog):
             balance = 1000
             DB.cursor.execute('INSERT INTO user_info (discord_id, balance) VALUES (%s,%s)', (discord_id, balance))
             DB.db.commit()
-            await ctx.send(f'{balance} leva. were given to {ctx.message.author.mention}. Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}')
+            await ctx.send(f'{balance}$. were given to {ctx.message.author.mention}. Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}$')
 
     @commands.command(name='gamble')
     async def _gamble(self, ctx, amount, bet):
         discord_id = str(ctx.message.author.id)
         if discord_id in DB.get_all_ids():
-            #try:
-            new_balance = 0
+            try:
+                new_balance = 0
 
-            balance = int(DB.BalanceUtilisation.get_balance(discord_id))
-            amount = int(amount)
-            choice = random.choice(gambling_utils.wheel_numbers)
-            await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
-            if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
-                new_balance = balance + amount
-                DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
-            elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
-                new_balance = balance + amount
-                DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
-            elif bet == 'green' and choice == 0:
-                new_balance = balance + 14 * amount
-                DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                await ctx.send(f'{ctx.message.author.mention} won {new_balance}lv')
-            else:
-                new_balance = balance - amount
-                DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                await ctx.send(f'{ctx.message.author.mention} lost {new_balance}lv')
+                balance = int(DB.BalanceUtilisation.get_balance(discord_id))
+                amount = int(amount)
+                choice = random.choice(gambling_utils.wheel_numbers)
+                await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
+                if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
+                    new_balance = balance + amount
+                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
+                    new_balance = balance + amount
+                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                elif bet == 'green' and choice == 0:
+                    new_balance = balance + 14 * amount
+                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                else:
+                    new_balance = balance - amount
+                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                    await ctx.send(f'{ctx.message.author.mention} lost {amount}$')
 
-           # except Exception:
-                # await ctx.send('Please type \'.gamble {ammount} {black/red/yellow}\'')
+            except Exception:
+                await ctx.send('Please type \'.gamble {ammount} {black/red/yellow}\'')
         else:
-            await ctx.send('Type .balance to get your first 1000lv')
+            await ctx.send('Type .balance to get your first 1000$')
 
 
 
