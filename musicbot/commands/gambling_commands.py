@@ -12,9 +12,9 @@ class Gambling(commands.Cog):
 
     @commands.command(name='balance')
     async def _balance(self, ctx):
-        discord_id = ctx.message.author.id
+        discord_id = str(ctx.message.author.id)
         if discord_id in DB.get_all_ids():
-            f'Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}'
+            f'Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}$'
         else:
             balance = 1000
             DB.cursor.execute('INSERT INTO user_info (discord_id, balance) VALUES (%s,%s)', (discord_id, balance))
