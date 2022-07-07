@@ -31,4 +31,5 @@ class BalanceUtilisation:
     @staticmethod
     def get_all_ids():
         cursor.execute('SELECT discord_id FROM user_info')
-        return cursor.fetchall()
+        return cursor.fetchall()[0]
+
