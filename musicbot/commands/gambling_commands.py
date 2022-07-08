@@ -14,7 +14,7 @@ class Gambling(commands.Cog):
     async def _balance(self, ctx):
         discord_id = str(ctx.message.author.id)
         if discord_id in DB.get_all_ids():
-            f'Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}$'
+            await ctx.send(f'Current balance: {DB.BalanceUtilisation.get_balance(discord_id)}$')
         else:
             balance = 1000
             DB.cursor.execute('INSERT INTO user_info (discord_id, balance) VALUES (%s,%s)', (discord_id, balance))
@@ -27,27 +27,29 @@ class Gambling(commands.Cog):
         if discord_id in DB.get_all_ids():
             try:
                 new_balance = 0
-
-                balance = int(DB.BalanceUtilisation.get_balance(discord_id))
                 amount = int(amount)
-                choice = random.choice(gambling_utils.wheel_numbers)
-                await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
-                if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
-                    new_balance = balance + amount
-                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
-                elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
-                    new_balance = balance + amount
-                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
-                elif bet == 'green' and choice == 0:
-                    new_balance = balance + 14 * amount
-                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                    await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                balance = int(DB.BalanceUtilisation.get_balance(discord_id))
+                if balance <= 0 or balance < amount:
+                    await ctx.send('Not enough balance to make this bet.')
                 else:
-                    new_balance = balance - amount
-                    DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                    await ctx.send(f'{ctx.message.author.mention} lost {amount}$')
+                    choice = random.choice(gambling_utils.wheel_numbers)
+                    await ctx.send(file=discord.File(gambling_utils.get_wheel_number_path(choice)))
+                    if bet == 'black' and choice in gambling_utils.wheel_numbers_black:
+                        new_balance = balance + amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                    elif bet == 'red' and choice in gambling_utils.wheel_numbers_red:
+                        new_balance = balance + amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                    elif bet == 'green' and choice == 0:
+                        new_balance = balance + 14 * amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                    else:
+                        new_balance = balance - amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} lost {amount}$')
 
             except Exception:
                 await ctx.send('Please type \'.gamble {ammount} {black/red/yellow}\'')
