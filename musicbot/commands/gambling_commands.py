@@ -46,13 +46,21 @@ class Gambling(commands.Cog):
                         new_balance = balance + 14 * amount
                         DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                         await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                    elif bet == 'even' and choice in [i for i in range(1, 36) if i % 2 == 0]:
+                        new_balance = balance + 2 * amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                    elif bet == 'odd' and choice in [i for i in range(1, 36) if i % 2 != 0]:
+                        new_balance = balance + 2 * amount
+                        DB.BalanceUtilisation.new_balance(discord_id, new_balance)
+                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
                     else:
                         new_balance = balance - amount
                         DB.BalanceUtilisation.new_balance(discord_id, new_balance)
                         await ctx.send(f'{ctx.message.author.mention} lost {amount}$')
 
             except Exception:
-                await ctx.send('Please type \'.gamble {ammount} {black/red/yellow}\'')
+                await ctx.send('Please type \'.gamble {ammount} {black/red/green}\'')
         else:
             await ctx.send('Type .balance to get your first 1000$')
 
