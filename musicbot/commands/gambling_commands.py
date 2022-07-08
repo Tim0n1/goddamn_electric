@@ -45,7 +45,7 @@ class Gambling(commands.Cog):
                     elif bet == 'green' and choice == 0:
                         new_balance = balance + 14 * amount
                         DB.BalanceUtilisation.new_balance(discord_id, new_balance)
-                        await ctx.send(f'{ctx.message.author.mention} won {amount}$')
+                        await ctx.send(f'{ctx.message.author.mention} won {14 * amount}$')
                     elif bet == 'even' and choice in [i for i in range(1, 36) if i % 2 == 0]:
                         new_balance = balance + 2 * amount
                         DB.BalanceUtilisation.new_balance(discord_id, new_balance)
